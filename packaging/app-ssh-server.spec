@@ -39,6 +39,7 @@ mkdir -p -m 755 %{buildroot}/usr/clearos/apps/ssh_server
 cp -r * %{buildroot}/usr/clearos/apps/ssh_server/
 
 install -d -m 0755 %{buildroot}/var/clearos/ssh_server
+install -d -m 0755 %{buildroot}/var/clearos/ssh_server/backup
 install -D -m 0644 packaging/sshd.php %{buildroot}/var/clearos/base/daemon/sshd.php
 
 %post
@@ -80,6 +81,7 @@ exit 0
 %exclude /usr/clearos/apps/ssh_server/tests
 %dir /usr/clearos/apps/ssh_server
 %dir /var/clearos/ssh_server
+%dir /var/clearos/ssh_server/backup
 /usr/clearos/apps/ssh_server/deploy
 /usr/clearos/apps/ssh_server/language
 /usr/clearos/apps/ssh_server/libraries

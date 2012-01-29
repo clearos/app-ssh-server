@@ -46,6 +46,7 @@ $app['core_requires'] = array(
 
 $app['core_directory_manifest'] = array(
     '/var/clearos/ssh_server' => array(),
+    '/var/clearos/ssh_server/backup' => array(),
 );
 
 $app['core_file_manifest'] = array(
