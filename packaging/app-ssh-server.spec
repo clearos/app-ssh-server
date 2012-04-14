@@ -1,7 +1,7 @@
 
 Name: app-ssh-server
 Epoch: 1
-Version: 1.0.10
+Version: 1.1.0
 Release: 1%{dist}
 Summary: SSH Server
 License: GPLv3
@@ -16,7 +16,7 @@ Requires: app-network
 SSH is a network protocol for allowing remote access to the systems Command Line Interface, or CLI.
 
 %package core
-Summary: SSH Server - APIs and install
+Summary: SSH Server - Core
 License: LGPLv3
 Group: ClearOS/Libraries
 Requires: app-base-core
