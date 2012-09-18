@@ -188,7 +188,7 @@ class OpenSSH extends Daemon
             if (array_key_exists($this->config['PermitRootLogin'], $this->permit_root_login_options))
                 return $this->config['PermitRootLogin'];
             else
-                throw new Validation_Exception(lang('base_exception_file_parse_error'));
+                throw new Validation_Exception(lang('base_file_parse_error'));
         } else {
             return self::DEFAULT_PERMIT_ROOT_LOGIN;
         }
@@ -339,7 +339,7 @@ class OpenSSH extends Daemon
         else if (preg_match('/no/i', $boolean_text))
             return FALSE;
         else
-            throw new Validation_Exception(lang('base_exception_file_parse_error'));
+            throw new Validation_Exception(lang('base_file_parse_error'));
     }
 
     /**
