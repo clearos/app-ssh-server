@@ -63,7 +63,7 @@ class SSH_Server extends ClearOS_Controller
         // Load views
         //-----------
 
-        $views = array('ssh_server/server', 'ssh_server/firewall', 'ssh_server/settings');
+        $views = array('ssh_server/server', 'ssh_server/network', 'ssh_server/settings');
 
         $this->page->view_forms($views, lang('ssh_server_app_name'));
     }

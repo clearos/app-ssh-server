@@ -5,7 +5,7 @@
 /////////////////////////////////////////////////////////////////////////////
 
 $app['basename'] = 'ssh_server';
-$app['version'] = '1.1.0';
+$app['version'] = '1.4.5';
 $app['release'] = '1';
 $app['vendor'] = 'ClearFoundation';
 $app['packager'] = 'ClearFoundation';
@@ -28,7 +28,6 @@ $app['subcategory'] = lang('base_subcategory_infrastructure');
 
 $app['controllers']['settings']['title'] = lang('base_settings');
 $app['controllers']['server']['title'] = lang('base_server');
-$app['controllers']['firewall']['title'] = lang('ssh_server_firewall');
 $app['controllers']['ssh_server']['title'] = lang('ssh_server_app_name');
 
 /////////////////////////////////////////////////////////////////////////////
@@ -40,7 +39,7 @@ $app['requires'] = array(
 );
 
 $app['core_requires'] = array(
-    'app-network-core',
+    'app-network-core >= 1:1.4.5',
     'openssh-server >= 5.3p1',
 );
 

@@ -1,13 +1,13 @@
 <?php
 
 /**
- * OpenSSH server firewall controller.
+ * SSH Server network check controller.
  *
  * @category   Apps
- * @package    OpenSSH
+ * @package    SSH_Server
  * @subpackage Controllers
  * @author     ClearFoundation <developer@clearfoundation.com>
- * @copyright  2011 ClearFoundation
+ * @copyright  2012 ClearFoundation
  * @license    http://www.gnu.org/copyleft/gpl.html GNU General Public License version 3 or later
  * @link       http://www.clearfoundation.com/docs/developer/apps/ssh_server/
  */
@@ -30,31 +30,47 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 ///////////////////////////////////////////////////////////////////////////////
+// B O O T S T R A P
+///////////////////////////////////////////////////////////////////////////////
+
+$bootstrap = getenv('CLEAROS_BOOTSTRAP') ? getenv('CLEAROS_BOOTSTRAP') : '/usr/clearos/framework/shared';
+require_once $bootstrap . '/bootstrap.php';
+
+///////////////////////////////////////////////////////////////////////////////
 // D E P E N D E N C I E S
 ///////////////////////////////////////////////////////////////////////////////
 
-use \Exception as Exception;
+require clearos_app_base('network') . '/controllers/network_check.php';
 
 ///////////////////////////////////////////////////////////////////////////////
 // C L A S S
 ///////////////////////////////////////////////////////////////////////////////
 
 /**
- * OpenSSH server firewall controller.
+ * SSH Server network check controller.
  *
  * @category   Apps
- * @package    OpenSSH
+ * @package    SSH_Server
  * @subpackage Controllers
  * @author     ClearFoundation <developer@clearfoundation.com>
- * @copyright  2011 ClearFoundation
+ * @copyright  2012 ClearFoundation
  * @license    http://www.gnu.org/copyleft/gpl.html GNU General Public License version 3 or later
  * @link       http://www.clearfoundation.com/docs/developer/apps/ssh_server/
  */
 
-class Firewall extends ClearOS_Controller
+class Network extends Network_Check
 {
     /**
-     * NTP settings controller.
+     * Network check constructor.
+     */
+
+    function __construct()
+    {
+        parent::__construct('ssh_server');
+    }
+
+    /**
+     * Network check view.
      *
      * @return view
      */
@@ -64,40 +80,10 @@ class Firewall extends ClearOS_Controller
         // Load dependencies
         //------------------
 
-        $this->lang->load('base');
-        $this->load->library('network/Network');
         $this->load->library('ssh_server/OpenSSH');
 
-        if (clearos_app_installed('incoming_firewall'))
-            $this->load->library('incoming_firewall/Port');
+        $port = $this->openssh->get_port();
 
-        // Set validation rules
-        //---------------------
-
-        $this->form_validation->set_policy('port', 'ssh_server/OpenSSH', 'validate_port', TRUE);
-        $this->form_validation->set_policy('permit_root_login', 'ssh_server/OpenSSH', 'validate_permit_root_login_policy', TRUE);
-        $this->form_validation->set_policy('password_authentication', 'ssh_server/OpenSSH', 'validate_password_authentication_policy', TRUE);
-
-        $form_ok = $this->form_validation->run();
-
-        // Load view data
-        //---------------
-
-        try {
-            $data['port']= $this->openssh->get_port();
-
-            if (clearos_app_installed('incoming_firewall'))
-                $data['is_firewalled'] = $this->port->is_firewalled('TCP', $data['port']);
-            else
-                $data['is_firewalled'] = FALSE;
-        } catch (Exception $e) {
-            $this->page->view_exception($e);
-            return;
-        }
-
-        // Load views
-        //-----------
-
-        $this->page->view_form('ssh_server/firewall', $data, lang('ssh_server_firewall'));
+        parent::index('TCP', $port);
     }
 }
