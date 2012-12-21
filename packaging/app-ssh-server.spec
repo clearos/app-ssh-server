@@ -1,7 +1,7 @@
 
 Name: app-ssh-server
 Epoch: 1
-Version: 1.4.7
+Version: 1.4.10
 Release: 1%{dist}
 Summary: SSH Server
 License: GPLv3
