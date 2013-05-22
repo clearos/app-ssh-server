@@ -3,9 +3,9 @@
 /**
  * OpenSSH server settings controller.
  *
- * @category   Apps
- * @package    OpenSSH
- * @subpackage Controllers
+ * @category   apps
+ * @package    ssh-server
+ * @subpackage controllers
  * @author     ClearFoundation <developer@clearfoundation.com>
  * @copyright  2011 ClearFoundation
  * @license    http://www.gnu.org/copyleft/gpl.html GNU General Public License version 3 or later
@@ -42,9 +42,9 @@ use \Exception as Exception;
 /**
  * OpenSSH server settings controller.
  *
- * @category   Apps
- * @package    OpenSSH
- * @subpackage Controllers
+ * @category   apps
+ * @package    ssh-server
+ * @subpackage controllers
  * @author     ClearFoundation <developer@clearfoundation.com>
  * @copyright  2011 ClearFoundation
  * @license    http://www.gnu.org/copyleft/gpl.html GNU General Public License version 3 or later

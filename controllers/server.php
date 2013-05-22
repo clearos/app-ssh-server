@@ -3,9 +3,9 @@
 /**
  * OpenSSH server daemon controller.
  *
- * @category   Apps
- * @package    OpenSSH
- * @subpackage Controllers
+ * @category   apps
+ * @package    ssh-server
+ * @subpackage controllers
  * @author     ClearFoundation <developer@clearfoundation.com>
  * @copyright  2011 ClearFoundation
  * @license    http://www.gnu.org/copyleft/gpl.html GNU General Public License version 3 or later
@@ -49,9 +49,9 @@ require clearos_app_base('base') . '/controllers/daemon.php';
 /**
  * OpenSSH server daemon controller.
  *
- * @category   Apps
- * @package    OpenSSH
- * @subpackage Controllers
+ * @category   apps
+ * @package    ssh-server
+ * @subpackage controllers
  * @author     ClearFoundation <developer@clearfoundation.com>
  * @copyright  2011 ClearFoundation
  * @license    http://www.gnu.org/copyleft/gpl.html GNU General Public License version 3 or later

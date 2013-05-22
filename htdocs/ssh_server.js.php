@@ -3,9 +3,9 @@
 /**
  * Javascript helper for SSH Server.
  *
- * @category   Apps
- * @package    Ssh_Server
- * @subpackage Javascript
+ * @category   apps
+ * @package    ssh-server
+ * @subpackage javascript
  * @author     ClearFoundation <developer@clearfoundation.com>
  * @copyright  2011 ClearFoundation
  * @license    http://www.gnu.org/copyleft/gpl.html GNU General Public License version 3 or later
