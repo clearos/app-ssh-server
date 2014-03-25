@@ -7,7 +7,7 @@
  * @package    ssh-server
  * @subpackage libraries
  * @author     ClearFoundation <developer@clearfoundation.com>
- * @copyright  2011 ClearFoundation
+ * @copyright  2011-2014 ClearFoundation
  * @license    http://www.gnu.org/copyleft/lgpl.html GNU Lesser General Public License version 3 or later
  * @link       http://www.clearfoundation.com/docs/developer/apps/ssh_server/
  */
@@ -83,7 +83,7 @@ clearos_load_library('base/Validation_Exception');
  * @package    ssh-server
  * @subpackage libraries
  * @author     ClearFoundation <developer@clearfoundation.com>
- * @copyright  2011 ClearFoundation
+ * @copyright  2011-2014 ClearFoundation
  * @license    http://www.gnu.org/copyleft/lgpl.html GNU Lesser General Public License version 3 or later
  * @link       http://www.clearfoundation.com/docs/developer/apps/ssh_server/
  */

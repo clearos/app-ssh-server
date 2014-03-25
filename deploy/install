@@ -1,18 +1,5 @@
 #!/bin/sh
 
-TIMESTAMP=`date "+%b-%d-%Y-%T"`
-
-# Set default configuration
-#--------------------------
-
-logger -p local6.notice -t installer "app-ssh-server-core - setting default configuration"
-
-if [ -e /etc/ssh/sshd_config ]; then
-    cp /etc/ssh/sshd_config /var/clearos/ssh_server/backup/sshd_config.$TIMESTAMP
-fi
-
-cp /usr/clearos/apps/ssh_server/deploy/sshd_config /etc/ssh/sshd_config
-
 # Set default start/boot
 #-----------------------
 
