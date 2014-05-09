@@ -1,7 +1,7 @@
 
 Name: app-ssh-server
 Epoch: 1
-Version: 1.4.14
+Version: 1.6.0
 Release: 1%{dist}
 Summary: SSH Server
 License: GPLv3
@@ -76,7 +76,6 @@ exit 0
 %files core
 %defattr(-,root,root)
 %exclude /usr/clearos/apps/ssh_server/packaging
-%exclude /usr/clearos/apps/ssh_server/tests
 %dir /usr/clearos/apps/ssh_server
 %dir /var/clearos/ssh_server
 %dir /var/clearos/ssh_server/backup
