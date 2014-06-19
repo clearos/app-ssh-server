@@ -4,7 +4,7 @@
 #-----------------------
 
 logger -p local6.notice -t installer "app-ssh-server-core - enabling SSH server"
-chkconfig sshd on
+chkconfig sshd on >/dev/null 2>&1
 
 logger -p local6.notice -t installer "app-ssh-server-core - starting SSH server"
-service sshd start
+service sshd start >/dev/null 2>&1
