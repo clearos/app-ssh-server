@@ -1,7 +1,7 @@
 
 Name: app-ssh-server
 Epoch: 1
-Version: 2.1.6
+Version: 2.2.0
 Release: 1%{dist}
 Summary: SSH Server
 License: GPLv3
@@ -38,6 +38,10 @@ cp -r * %{buildroot}/usr/clearos/apps/ssh_server/
 
 install -d -m 0755 %{buildroot}/var/clearos/ssh_server
 install -d -m 0755 %{buildroot}/var/clearos/ssh_server/backup
+install -D -m 0644 packaging/attack-detector-sshd-ddos.php %{buildroot}/var/clearos/attack_detector/filters/sshd-ddos.php
+install -D -m 0644 packaging/attack-detector-sshd.php %{buildroot}/var/clearos/attack_detector/filters/sshd.php
+install -D -m 0644 packaging/clearos-sshd-ddos.conf %{buildroot}/etc/fail2ban/jail.d/clearos-sshd-ddos.conf
+install -D -m 0644 packaging/clearos-sshd.conf %{buildroot}/etc/fail2ban/jail.d/clearos-sshd.conf
 install -D -m 0644 packaging/sshd.php %{buildroot}/var/clearos/base/daemon/sshd.php
 
 %post
@@ -82,4 +86,8 @@ exit 0
 /usr/clearos/apps/ssh_server/deploy
 /usr/clearos/apps/ssh_server/language
 /usr/clearos/apps/ssh_server/libraries
+/var/clearos/attack_detector/filters/sshd-ddos.php
+/var/clearos/attack_detector/filters/sshd.php
+%config(noreplace) /etc/fail2ban/jail.d/clearos-sshd-ddos.conf
+%config(noreplace) /etc/fail2ban/jail.d/clearos-sshd.conf
 /var/clearos/base/daemon/sshd.php

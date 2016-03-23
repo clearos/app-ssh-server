@@ -5,7 +5,7 @@
 /////////////////////////////////////////////////////////////////////////////
 
 $app['basename'] = 'ssh_server';
-$app['version'] = '2.1.6';
+$app['version'] = '2.2.1';
 $app['release'] = '1';
 $app['vendor'] = 'ClearFoundation';
 $app['packager'] = 'ClearFoundation';
@@ -50,4 +50,16 @@ $app['core_directory_manifest'] = array(
 
 $app['core_file_manifest'] = array(
     'sshd.php'=> array('target' => '/var/clearos/base/daemon/sshd.php'),
+    'attack-detector-sshd.php' => array('target' => '/var/clearos/attack_detector/filters/sshd.php'),
+    'attack-detector-sshd-ddos.php' => array('target' => '/var/clearos/attack_detector/filters/sshd-ddos.php'),
+    'clearos-sshd.conf' => array(
+        'target' => '/etc/fail2ban/jail.d/clearos-sshd.conf',
+        'config' => TRUE,
+        'config_params' => 'noreplace'
+    ),
+    'clearos-sshd-ddos.conf' => array(
+        'target' => '/etc/fail2ban/jail.d/clearos-sshd-ddos.conf',
+        'config' => TRUE,
+        'config_params' => 'noreplace'
+    )
 );
