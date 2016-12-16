@@ -1,5 +1,19 @@
 #!/bin/sh
 
+# Disable TCP Forwarding
+#-----------------------
+
+CHECK=`grep "^AllowTcpForwarding.*no" /etc/ssh/sshd_config 2>/dev/null`
+if [ -z "$CHECK" ]; then
+    logger -p local6.notice -t installer "app-ssh-server-core - disabling TCP Forwarding"
+    CHECK=`grep "^#AllowTcpForwarding" /etc/ssh/sshd_config 2>/dev/null`
+    if [ -z "$CHECK" ]; then
+        echo "AllowTcpForwarding no" >> /etc/ssh/sshd_config
+    else
+        sed -i -e 's/^#AllowTcpForwarding.*/AllowTcpForwarding no/' /etc/ssh/sshd_config
+    fi
+fi
+
 # Set default start/boot
 #-----------------------
 
