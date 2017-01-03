@@ -97,6 +97,7 @@ class Settings extends ClearOS_Controller
         $this->form_validation->set_policy('port', 'ssh_server/OpenSSH', 'validate_port', TRUE);
         $this->form_validation->set_policy('permit_root_login', 'ssh_server/OpenSSH', 'validate_permit_root_login_policy', TRUE);
         $this->form_validation->set_policy('password_authentication', 'ssh_server/OpenSSH', 'validate_password_authentication_policy', TRUE);
+        $this->form_validation->set_policy('tcp_forwarding', 'ssh_server/OpenSSH', 'validate_tcp_forwarding_policy', TRUE);
 
         $form_ok = $this->form_validation->run();
 
@@ -108,6 +109,7 @@ class Settings extends ClearOS_Controller
                 $this->openssh->set_port($this->input->post('port'));
                 $this->openssh->set_permit_root_login_policy($this->input->post('permit_root_login'));
                 $this->openssh->set_password_authentication_policy($this->input->post('password_authentication'));
+                $this->openssh->set_tcp_forwarding_policy($this->input->post('tcp_forwarding'));
 
                 $this->openssh->reset(TRUE);
                 $this->page->set_status_updated();
@@ -127,6 +129,7 @@ class Settings extends ClearOS_Controller
             $data['password_authentication'] = $this->openssh->get_password_authentication_policy();
             $data['permit_root_login'] = $this->openssh->get_permit_root_login_policy();
             $data['permit_root_logins'] = $this->openssh->get_permit_root_login_options();
+            $data['tcp_forwarding'] = $this->openssh->get_tcp_forwarding_policy();
         } catch (Exception $e) {
             $this->page->view_exception($e);
             return;

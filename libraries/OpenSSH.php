@@ -99,6 +99,7 @@ class OpenSSH extends Daemon
     const DEFAULT_PORT = 22;
     const DEFAULT_PASSWORD_AUTHENTICATION = TRUE;
     const DEFAULT_PERMIT_ROOT_LOGIN = 'yes';
+    const DEFAULT_ALLOW_TCP_FORWARDING = TRUE;
 
     ///////////////////////////////////////////////////////////////////////////////
     // V A R I A B L E S
@@ -195,6 +196,26 @@ class OpenSSH extends Daemon
     }
 
     /**
+     * Returns TCP forwarding policy.
+     *
+     * @return boolean TCP forwarding policy
+     * @throws Engine_Exception
+     */
+
+    public function get_tcp_forwarding_policy()
+    {
+        clearos_profile(__METHOD__, __LINE__);
+
+        if (! $this->is_loaded)
+            $this->_load_config();
+
+        if (isset($this->config['AllowTcpForwarding']))
+            return $this->_get_boolean($this->config['AllowTcpForwarding']);
+        else
+            return self::DEFAULT_ALLOW_TCP_FORWARDING;
+    }
+
+    /**
      * Returns root login options.
      *
      * For now, we only allow "yes" and "no" for this option.
@@ -246,6 +267,26 @@ class OpenSSH extends Daemon
         Validation_Exception::is_valid($this->validate_permit_root_login_policy($policy));
 
         $this->_set_parameter('PermitRootLogin', $policy);
+    }
+
+    /**
+     * Sets TCP forwarding policy.
+     *
+     * @param boolean $policy policy
+     *
+     * @return void
+     * @throws Engine_Exception, Validation_Exception
+     */
+
+    public function set_tcp_forwarding_policy($policy)
+    {
+        clearos_profile(__METHOD__, __LINE__);
+
+        Validation_Exception::is_valid($this->validate_tcp_forwarding_policy($policy));
+
+        $policy_value = ($policy) ? 'yes' : 'no';
+
+        $this->_set_parameter('AllowTcpForwarding', $policy_value);
     }
 
     /**
@@ -303,13 +344,29 @@ class OpenSSH extends Daemon
     }
 
     /**
+     * Validates TCP forwarding policy.
+     *
+     * @param boolean $policy $policy
+     *
+     * @return string error message if policy is invalid
+     */
+
+    public function validate_tcp_forwarding_policy($policy)
+    {
+        clearos_profile(__METHOD__, __LINE__);
+
+        if (! clearos_is_valid_boolean($policy))
+            return lang('base_state_invalid');
+    }
+
+    /**
      * Validates port.
      *
      * @param integer $port port
      *
      * @return string error message if port is invalid
      */
-    
+
     public function validate_port($port)
     {
         clearos_profile(__METHOD__, __LINE__);
@@ -380,7 +437,7 @@ class OpenSSH extends Daemon
         $match = $file->replace_lines("/^$key\s+/", "$key $value\n");
 
         if ($match === 0) {
-            $match = $file->replace_lines("/^#\s*$key\s+/", "$key $value\n");
+            $match = $file->replace_lines("/^#$key\s+/", "$key $value\n");
             if ($match === 0)
                 $file->add_lines("$key = $value\n");
         }

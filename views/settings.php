@@ -65,6 +65,7 @@ echo form_header(lang('base_settings'));
 echo field_input('port', $port, lang('network_port'), $read_only);
 echo field_toggle_enable_disable('password_authentication', $password_authentication, lang('ssh_server_allow_passwords'), $read_only);
 echo field_dropdown('permit_root_login', $permit_root_logins, $permit_root_login, lang('ssh_server_allow_root_login'), $read_only);
+echo field_toggle_enable_disable('tcp_forwarding', $tcp_forwarding, 'TCP Forwarding', $read_only);
 
 echo field_button_set($buttons);
 
