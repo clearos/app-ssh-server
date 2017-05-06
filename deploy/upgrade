@@ -1,2 +1,13 @@
 #!/bin/sh
 
+CHECK=`grep "^action[[:space:]]*=[[:space:]]*iptables-allports" /etc/fail2ban/jail.d/clearos-sshd.conf 2>/dev/null`
+if [ -n "$CHECK" ]; then
+    logger -p local6.notice -t installer "app-ssh-server - updating sshd fail2ban to ipset"
+    sed -i -e "s/^action[[:space:]]*=[[:space:]]*iptables-allports/iptables-ipset-proto6-allports[name=sshd]/" /etc/fail2ban/jail.d/clearos-sshd.conf
+fi
+
+CHECK=`grep "^action[[:space:]]*=[[:space:]]*iptables-allports" /etc/fail2ban/jail.d/clearos-sshd-ddos.conf 2>/dev/null`
+if [ -n "$CHECK" ]; then
+    logger -p local6.notice -t installer "app-ssh-server - updating sshd-ddos fail2ban to ipset"
+    sed -i -e "s/^action[[:space:]]*=[[:space:]]*iptables-allports/iptables-ipset-proto6-allports[name=sshd-ddos]/" /etc/fail2ban/jail.d/clearos-sshd-ddos.conf
+fi
