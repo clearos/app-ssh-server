@@ -1,7 +1,7 @@
 
 Name: app-ssh-server
 Epoch: 1
-Version: 2.3.23
+Version: 2.4.0
 Release: 1%{dist}
 Summary: SSH Server
 License: GPLv3
@@ -20,7 +20,7 @@ Summary: SSH Server - Core
 License: LGPLv3
 Group: ClearOS/Libraries
 Requires: app-base-core
-Requires: app-network-core >= 1:1.4.5
+Requires: app-network-core >= 1:2.4.2
 Requires: openssh-server >= 5.3p1
 
 %description core

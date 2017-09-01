@@ -66,24 +66,14 @@ class Network extends Network_Check
 
     function __construct()
     {
-        parent::__construct('ssh_server');
-    }
-
-    /**
-     * Network check view.
-     *
-     * @return view
-     */
-
-    function index()
-    {
-        // Load dependencies
-        //------------------
-
         $this->load->library('ssh_server/OpenSSH');
 
         $port = $this->openssh->get_port();
 
-        parent::index('TCP', $port);
+        $rules = [
+            [ 'name' => 'SSH', 'protocol' => 'TCP', 'port' => $port ],
+        ];
+
+        parent::__construct('ssh_server', $rules, 'info');
     }
 }

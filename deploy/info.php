@@ -5,7 +5,7 @@
 /////////////////////////////////////////////////////////////////////////////
 
 $app['basename'] = 'ssh_server';
-$app['version'] = '2.3.23';
+$app['version'] = '2.4.0';
 $app['release'] = '1';
 $app['vendor'] = 'ClearFoundation';
 $app['packager'] = 'ClearFoundation';
@@ -39,7 +39,7 @@ $app['requires'] = array(
 );
 
 $app['core_requires'] = array(
-    'app-network-core >= 1:1.4.5',
+    'app-network-core >= 1:2.4.2',
     'openssh-server >= 5.3p1',
 );
 
