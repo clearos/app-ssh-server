@@ -1,11 +1,13 @@
 
 Name: app-ssh-server
 Epoch: 1
-Version: 2.4.0
+Version: 2.5.0
 Release: 1%{dist}
 Summary: SSH Server
 License: GPLv3
-Group: ClearOS/Apps
+Group: Applications/Apps
+Packager: ClearFoundation
+Vendor: ClearFoundation
 Source: %{name}-%{version}.tar.gz
 Buildarch: noarch
 Requires: %{name}-core = 1:%{version}-%{release}
@@ -16,9 +18,9 @@ Requires: app-network
 The SSH Server app provides the tools to manage secure shell policies for your system.
 
 %package core
-Summary: SSH Server - Core
+Summary: SSH Server - API
 License: LGPLv3
-Group: ClearOS/Libraries
+Group: Applications/API
 Requires: app-base-core
 Requires: app-network-core >= 1:2.4.2
 Requires: openssh-server >= 5.3p1
